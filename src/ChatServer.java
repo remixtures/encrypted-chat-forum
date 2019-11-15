@@ -21,27 +21,28 @@ public class ChatServer {
 
         try {
             serverSocket = new ServerSocket(portNumber);
+
             executorService = Executors.newCachedThreadPool();
-            startListen();
+            startListening();
 
         } catch (IOException e) {
 
             e.printStackTrace();
-
         }
-
     }
 
-    public void startListen() {
-        System.out.println("started listen");
+    public void startListening() {
+        System.out.println("started listening");
+        String clientName = "MrClient";
+        int clientNumber = 0;
         while(!serverSocket.isClosed()) {
 
             try {
                 Socket clientSocket = serverSocket.accept();
 
                 System.out.println("new connection");
-
-                executorService.submit(new ClientHandler(clientSocket));
+                clientNumber++;
+                executorService.submit(new ClientHandler(clientSocket , clientName+clientName , this));
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -4,7 +4,7 @@ public class ChatApp {
 
         ChatServer chatServer = new ChatServer(8080);
 
-        chatServer.startListen();
+        chatServer.startListening();
 
     }
 
